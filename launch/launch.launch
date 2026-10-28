@@ -1,0 +1,30 @@
+<launch>
+    
+    <!-- Odom Node -->
+    <node pkg="first_project" type="odom" name="odom" output="screen"></node>
+    
+    <!-- GPS Odometer Node -->
+    <node pkg="first_project" type="gps_odometer" name="gps_odometer" output="screen">
+        <!-- Set these to your initial GPS coordinates -->
+        <param name="lat_r" value="45.618932387" />
+        <param name="lon_r" value="9.281178887" />
+        <param name="alt_r" value="229.049" />
+        <param name="max_acceptable_distance" value="1000" />
+        <param name="max_acceptable_velocity" value="250" />
+        <!-- Optional parameters with default values -->
+        <param name="heading_window_size" value="5" />
+    </node>
+    
+    <!-- Sector Node -->
+    <node pkg="first_project" type="sector_times" name="sector_times" output="screen">
+        <param name="LAT_A" value="45.616398" />
+        <param name="LONG_A" value="9.280886" />
+        <param name="LAT_B" value="45.630021" />
+        <param name="LONG_B" value="9.288187" />
+        <param name="LAT_C" value="45.623928" />
+        <param name="LONG_C" value="9.287867" />
+  </node>
+    
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find first_project)/rviz/first_project.rviz" output="screen"></node>
+
+</launch>

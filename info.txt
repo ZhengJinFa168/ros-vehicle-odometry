@@ -1,0 +1,8 @@
+Zhang XiangYu
+Zheng Jin fa
+
+The first node's output has a base change so it is more consistent with gps data
+The second and the third nodes used to break with high rosbag play rates. Fixed: the second node now takes its time steps from the message timestamps instead of the wall clock, and the third node uses larger synchronizer queues (100), so both give the same output at any play rate (tested up to 50x)
+We added a rudimentary fix for the first node's starting steering angle that clamps the value to 0 if its abs value is less than 10
+We noticed that the front gps sometimes has pretty long gaps, so we added a filter for that (the second node predicts the position from the last good velocity while lat and long are 0, the third node simply assumes that the sector doesn't change)
+
